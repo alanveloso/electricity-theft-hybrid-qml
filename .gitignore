@@ -1,0 +1,12 @@
+# Ignorar dados pesados
+data/raw/*
+data/processed/*
+results/models/*
+
+# Ignorar arquivos de sistema e python
+__pycache__/
+*.pyc
+.ipynb_checkpoints
+.env
+venv/
+.DS_Store
