@@ -1,0 +1,24 @@
+[
+  {
+    "model": "Híbrido (CNN+VQC) — aprimorado",
+    "scenario": "no_balance",
+    "auc": 0.5329,
+    "accuracy": 0.2322,
+    "train_time_seconds": 83.5,
+    "epochs": 5,
+    "runs": 1,
+    "seed": 42,
+    "note": "Gargalo 128→64→4, L2, Adam, class_weight, early stop, LR schedule, dropout, init VQC, tune threshold. 5 ep, 1 run."
+  },
+  {
+    "model": "Híbrido (CNN+VQC) — aprimorado",
+    "scenario": "ros",
+    "auc": 0.5356,
+    "accuracy": 0.8678,
+    "train_time_seconds": 148.3,
+    "epochs": 5,
+    "runs": 1,
+    "seed": 42,
+    "note": "Idem."
+  }
+]
