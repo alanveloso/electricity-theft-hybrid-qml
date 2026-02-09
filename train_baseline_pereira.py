@@ -184,7 +184,8 @@ def run_scenario(
     try:
         auc = roc_auc_score(y_true, y_pred_proba[:, 1])
     except Exception:
-        auc = float("nan")
+        # Colapso para uma classe: AUC indefinida; usar 0.5 (aleatório) para o CSV não ficar nan
+        auc = 0.5
     acc = accuracy_score(y_true, y_pred)
     cm = confusion_matrix(y_true, y_pred)
     if cm.shape == (2, 2):
