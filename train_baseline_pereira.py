@@ -139,7 +139,7 @@ def run_scenario(
     # SGD sem momentum (artigo não cita); LR padrão 0.01. clipnorm evita gradiente explodir → loss nan.
     model.compile(
         optimizer=SGD(learning_rate=learning_rate, momentum=0.0, clipnorm=1.0),
-        loss="categorical_crossentropy",
+        loss=tf.keras.losses.CategoricalCrossentropy(label_smoothing=0.05),
         metrics=["accuracy", tf.keras.metrics.AUC(name="auc")],
     )
 

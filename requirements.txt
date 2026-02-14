@@ -1,9 +1,11 @@
-numpy
-pandas
-matplotlib
-scikit-learn
-tensorflow
-kagglehub
-pennylane
-pennylane-lightning
-jupyter
+# Versões fixas para reprodutibilidade (local e Kaggle).
+# No Kaggle: rode pip install -r requirements.txt na célula de instalação.
+numpy==2.4.2
+pandas==3.0.0
+matplotlib==3.10.8
+scikit-learn==1.8.0
+tensorflow==2.20.0
+kagglehub==0.4.2
+pennylane==0.44.0
+pennylane-lightning==0.44.0
+jupyter==1.1.1
