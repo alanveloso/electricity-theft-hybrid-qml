@@ -136,9 +136,9 @@ def run_scenario(
         X_tr, y_tr_cat = X_train, y_train_cat
 
     model = build_cnn(input_shape=(148, 7, 1))
-    # SGD sem momentum (artigo não cita); LR padrão 0.01 (ref. [17] não especifica valor)
+    # SGD sem momentum (artigo não cita); LR padrão 0.01. clipnorm evita gradiente explodir → loss nan.
     model.compile(
-        optimizer=SGD(learning_rate=learning_rate, momentum=0.0),
+        optimizer=SGD(learning_rate=learning_rate, momentum=0.0, clipnorm=1.0),
         loss="categorical_crossentropy",
         metrics=["accuracy", tf.keras.metrics.AUC(name="auc")],
     )

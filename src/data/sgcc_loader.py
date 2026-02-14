@@ -181,7 +181,14 @@ def load_sgcc_from_path(path, max_samples=None, seed=42, preprocessing="mean"):
     n = X_raw.shape[0]
     if X_raw.shape[1] != NEEDED_DAYS:
         X_raw = ensure_1036_days(X_raw, X_raw.shape[1])
-    X = X_raw.reshape(n, TIME_STEPS, FEATURES, 1)
+    X = X_raw.reshape(n, TIME_STEPS, FEATURES, 1).astype(np.float32)
+
+    # Garantir zero NaN restantes (evita loss nan no treino; linhas totalmente NaN na interpolação)
+    if np.any(np.isnan(X)):
+        fill_val = np.nanmean(X)
+        if np.isnan(fill_val):
+            fill_val = 0.0
+        X = np.nan_to_num(X, nan=fill_val, posinf=fill_val, neginf=fill_val)
 
     return X, y
 
