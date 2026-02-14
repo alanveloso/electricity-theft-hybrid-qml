@@ -1,5 +1,5 @@
-# Versões fixas para reprodutibilidade (local e Kaggle).
-# No Kaggle: rode pip install -r requirements.txt na célula de instalação.
+# Versões fixas para reprodutibilidade (uso local).
+# No Colab/Kaggle use requirements-colab.txt para evitar conflitos com o ambiente.
 numpy==2.4.2
 pandas==3.0.0
 matplotlib==3.10.8

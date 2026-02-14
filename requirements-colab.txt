@@ -1,0 +1,6 @@
+# Colab/Kaggle: só o que falta ou atualizar. Não fixa numpy/pandas/tensorflow
+# para evitar conflito com o ambiente (google-colab, opencv, gradio, etc.).
+# Use: pip install -q -r requirements-colab.txt
+kagglehub>=0.4
+pennylane>=0.43
+pennylane-lightning>=0.43
