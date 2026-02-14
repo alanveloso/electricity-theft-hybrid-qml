@@ -14,3 +14,14 @@ venv/
 .DS_Store
 checkpoints/
 *.log
+
+# Artefatos do notebook (teste local / Kaggle)
+baseline_*_run*_*.keras
+baseline_*_run*_*.png
+baseline_*_run*_*.txt
+baseline_*_run*_*.csv
+hybrid_*_run*_*.keras
+hybrid_*_run*_*.png
+hybrid_*_run*_*.txt
+hybrid_*_run*_*.csv
+colab_full_test_results.csv
