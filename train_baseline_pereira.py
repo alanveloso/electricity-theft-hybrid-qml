@@ -164,11 +164,23 @@ def run_scenario(
         )
         callbacks_list.append(CSVLogger(f"{prefix}_training_log.csv", append=False))
 
+    # Garantir zero NaN/Inf nos dados de treino e validação (evita loss nan)
+    def _sanitize(X):
+        if not np.isfinite(X).all():
+            fill = np.nanmean(X) if np.any(np.isfinite(X)) else 0.0
+            if not np.isfinite(fill):
+                fill = 0.0
+            X = np.nan_to_num(X, nan=fill, posinf=fill, neginf=fill)
+        return X.astype(np.float32)
+    X_tr = _sanitize(np.asarray(X_tr))
+    X_test_safe = _sanitize(np.asarray(X_test))
+    y_test_cat_safe = np.asarray(y_test_cat, dtype=np.float32)
+
     t0 = time.perf_counter()
     history = model.fit(
         X_tr,
         y_tr_cat,
-        validation_data=(X_test, y_test_cat),
+        validation_data=(X_test_safe, y_test_cat_safe),
         epochs=epochs,
         batch_size=128,
         verbose=2 if _is_kaggle() and verbose else verbose,
@@ -177,7 +189,7 @@ def run_scenario(
     )
     train_time_sec = time.perf_counter() - t0
 
-    y_pred_proba = model.predict(X_test, verbose=0)
+    y_pred_proba = model.predict(X_test_safe, verbose=0)
     y_pred = np.argmax(y_pred_proba, axis=1)
     y_true = y_test
 
